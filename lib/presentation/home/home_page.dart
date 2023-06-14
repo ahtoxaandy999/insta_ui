@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:insta_ui/presentation/home/widgets/post.dart';
 import 'package:insta_ui/src/bloc/content/content.dart';
 import 'package:insta_ui/src/bloc/theme/theme.dart';
 import 'package:insta_ui/src/repository/content/content_repo.dart';
@@ -58,40 +59,12 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
-          return Container(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 20.0,
-                      backgroundImage: AssetImage('assets/avatar.jpg'),
-                    ),
-                    SizedBox(width: 8.0),
-                    Text(
-                      'Username',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8.0),
-                Image.asset('assets/post_image.jpg'),
-                const SizedBox(height: 8.0),
-                const Row(
-                  children: [
-                    Icon(Icons.favorite_border),
-                    SizedBox(width: 4.0),
-                    Text('Likes'),
-                  ],
-                ),
-                const SizedBox(height: 8.0),
-                const Text('Caption'),
-              ],
-            ),
+          return const PostWidget(
+            username: 'Username',
+            avatarImage: 'assets/avatar.jpg',
+            postImage: 'assets/post_image.jpg',
+            likes: 0,
+            caption: 'Caption',
           );
         },
       ),

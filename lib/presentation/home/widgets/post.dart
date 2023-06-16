@@ -63,7 +63,7 @@ class _PostWidgetState extends State<PostWidget> {
                     username: widget.username,
                     caption: widget.caption),
                 const SizedBox(height: 8.0),
-                const PostComments(commentsText: 'View all 12 comments'),
+                const PostComments(commentsText: 'View all comments (12)'),
               ],
             ),
           ),

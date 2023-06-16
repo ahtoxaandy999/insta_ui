@@ -82,22 +82,25 @@ class _PostActionsState extends State<PostActions> {
             ),
           ],
         ),
-        MouseRegion(
-          onHover: (event) {
-            setState(() {
-              isBookmarkHovered = true;
-            });
-          },
-          onExit: (event) {
-            setState(() {
-              isBookmarkHovered = false;
-            });
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Opacity(
-              opacity: isBookmarkHovered ? 0.7 : 1.0,
-              child: const Icon(Icons.bookmark_border),
+        Transform.translate(
+          offset: const Offset(16.0, 0.0),
+          child: MouseRegion(
+            onHover: (event) {
+              setState(() {
+                isBookmarkHovered = true;
+              });
+            },
+            onExit: (event) {
+              setState(() {
+                isBookmarkHovered = false;
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Opacity(
+                opacity: isBookmarkHovered ? 0.7 : 1.0,
+                child: const Icon(Icons.bookmark_border),
+              ),
             ),
           ),
         ),

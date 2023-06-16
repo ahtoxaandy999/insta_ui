@@ -32,8 +32,6 @@ class MyHomeScreen extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _MyHomeScreenState extends State<MyHomeScreen> {
-  bool isDarkModeEnabled = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,17 +54,25 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return const PostWidget(
-            username: 'Username',
-            avatarImage: 'assets/avatar.jpg',
-            postImage: 'assets/post_image.jpg',
-            likes: 0,
-            caption: 'Caption',
-          );
-        },
+      body: Center(
+        child: Container(
+          constraints: const BoxConstraints(
+            maxWidth: 470.0,
+          ),
+          child: ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return const PostWidget(
+                username: 'username',
+                avatarImage: 'assets/avatar.jpg',
+                postImage: 'assets/post_image.jpg',
+                likes: 15,
+                caption: 'Caption',
+                publicationTime: '3 h.',
+              );
+            },
+          ),
+        ),
       ),
     );
   }

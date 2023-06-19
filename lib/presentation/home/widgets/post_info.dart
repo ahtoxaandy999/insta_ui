@@ -22,6 +22,9 @@ class _PostInfoState extends State<PostInfo> {
   @override
   Widget build(BuildContext context) {
     final maxLines = showFullCaption ? 9999 : 3;
+    final theme = Theme.of(context);
+    final textColor = theme.textTheme.bodyLarge?.color;
+    final cardColor = theme.cardColor;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,8 +33,9 @@ class _PostInfoState extends State<PostInfo> {
           children: [
             Text(
               '${widget.likes} likes',
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
+                color: textColor,
               ),
             ),
           ],
@@ -41,12 +45,16 @@ class _PostInfoState extends State<PostInfo> {
           builder: (context, constraints) {
             final textSpan = TextSpan(
               text: widget.username,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: textColor,
+              ),
               children: [
                 TextSpan(
                   text: ' ${widget.caption}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.normal,
+                    color: textColor,
                   ),
                 ),
               ],
@@ -78,7 +86,7 @@ class _PostInfoState extends State<PostInfo> {
                         });
                       },
                       child: Container(
-                        color: Colors.white,
+                        color: cardColor,
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: const Text(
                           'Show more',

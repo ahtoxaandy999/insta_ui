@@ -67,7 +67,8 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 avatarImage: 'assets/avatar.jpg',
                 postImage: 'assets/post_image.jpg',
                 likes: 15,
-                caption: 'Caption',
+                caption:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                 publicationTime: '3 h.',
               );
             },

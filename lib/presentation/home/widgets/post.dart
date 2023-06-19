@@ -3,6 +3,7 @@ import 'package:insta_ui/presentation/home/widgets/post_actions.dart';
 import 'package:insta_ui/presentation/home/widgets/post_comments.dart';
 import 'package:insta_ui/presentation/home/widgets/post_head.dart';
 import 'package:insta_ui/presentation/home/widgets/post_info.dart';
+import 'package:insta_ui/src/models/post/comment.dart';
 
 class PostWidget extends StatefulWidget {
   const PostWidget({
@@ -13,6 +14,7 @@ class PostWidget extends StatefulWidget {
     required this.likes,
     required this.caption,
     required this.publicationTime,
+    required this.comments,
   }) : super(key: key);
 
   final String username;
@@ -21,6 +23,7 @@ class PostWidget extends StatefulWidget {
   final int likes;
   final String caption;
   final String publicationTime;
+  final List<PostComment> comments;
 
   @override
   _PostWidgetState createState() => _PostWidgetState();
@@ -48,6 +51,7 @@ class _PostWidgetState extends State<PostWidget> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Transform.translate(
                   offset: const Offset(-8.0, 0.0),
@@ -59,7 +63,7 @@ class _PostWidgetState extends State<PostWidget> {
                     username: widget.username,
                     caption: widget.caption),
                 const SizedBox(height: 8.0),
-                const PostComments(commentsText: 'View all comments (12)'),
+                PostComments(comments: widget.comments),
               ],
             ),
           ),

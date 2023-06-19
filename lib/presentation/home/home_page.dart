@@ -4,8 +4,47 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:insta_ui/presentation/home/widgets/post.dart';
 import 'package:insta_ui/src/bloc/content/content.dart';
 import 'package:insta_ui/src/bloc/theme/theme.dart';
+import 'package:insta_ui/src/models/post/comment.dart';
 import 'package:insta_ui/src/repository/content/content_repo.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+final testComments = [
+  PostComment(
+    nickname: 'John',
+    avatarImage: 'assets/avatar.jpg',
+    time: '3h',
+    likes: '33',
+    content: 'Test comment 1',
+  ),
+  PostComment(
+    nickname: 'Jane',
+    avatarImage: 'assets/avatar.jpg',
+    time: '4h',
+    likes: '21',
+    content: 'Test comment 2',
+  ),
+  PostComment(
+    nickname: 'Alice',
+    avatarImage: 'assets/avatar.jpg',
+    time: '5h',
+    likes: '10',
+    content: 'Test comment 3',
+  ),
+  PostComment(
+    nickname: 'Bob',
+    avatarImage: 'assets/avatar.jpg',
+    time: '6h',
+    likes: '15',
+    content: 'Test comment 4',
+  ),
+  PostComment(
+    nickname: 'Emily',
+    avatarImage: 'assets/avatar.jpg',
+    time: '7h',
+    likes: '27',
+    content: 'Test comment 5',
+  ),
+];
 
 @immutable
 @RoutePage()
@@ -62,7 +101,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
           child: ListView.builder(
             itemCount: 10,
             itemBuilder: (context, index) {
-              return const PostWidget(
+              return PostWidget(
                 username: 'username',
                 avatarImage: 'assets/avatar.jpg',
                 postImage: 'assets/post_image.jpg',
@@ -70,6 +109,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 caption:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                 publicationTime: '3 h.',
+                comments: testComments,
               );
             },
           ),

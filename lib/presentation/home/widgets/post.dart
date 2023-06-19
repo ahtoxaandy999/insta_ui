@@ -36,10 +36,6 @@ class _PostWidgetState extends State<PostWidget> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(bottom: 20.0),
-      decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey)),
-      ),
-      margin: const EdgeInsets.only(bottom: 12.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

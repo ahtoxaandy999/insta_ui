@@ -21,7 +21,6 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   }
 
   void _onToggle(ToggleEvent event, Emitter<ThemeState> emit) async {
-    print('ThemeBloc: $state.isDarkModeEnabled');
     emit(state.copyWith(isDarkModeEnabled: !state.isDarkModeEnabled));
   }
 }

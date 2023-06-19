@@ -22,9 +22,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var currentBrightness = getCurrentThemeBrightness(context);
-    print('currentBrightness: $currentBrightness');
-
     return Consumer<ThemeBloc>(
       builder: (context, themeBloc, _) {
         return MaterialApp.router(

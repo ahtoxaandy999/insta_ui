@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class PostInfo extends StatefulWidget {
+class PostInfoStateNotifier extends ChangeNotifier {
+  bool _showFullCaption = false;
+
+  bool get showFullCaption => _showFullCaption;
+
+  void toggleShowFullCaption() {
+    _showFullCaption = !_showFullCaption;
+    notifyListeners();
+  }
+}
+
+class PostInfo extends StatelessWidget {
   final int likes;
   final String username;
   final String caption;
@@ -13,15 +25,39 @@ class PostInfo extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => PostInfoStateNotifier(),
+      child: _PostInfoWidget(
+        likes: likes,
+        username: username,
+        caption: caption,
+      ),
+    );
+  }
+}
+
+class _PostInfoWidget extends StatefulWidget {
+  final int likes;
+  final String username;
+  final String caption;
+
+  const _PostInfoWidget({
+    Key? key,
+    required this.likes,
+    required this.username,
+    required this.caption,
+  }) : super(key: key);
+
+  @override
   _PostInfoState createState() => _PostInfoState();
 }
 
-class _PostInfoState extends State<PostInfo> {
-  bool showFullCaption = false;
-
+class _PostInfoState extends State<_PostInfoWidget> {
   @override
   Widget build(BuildContext context) {
-    final maxLines = showFullCaption ? 9999 : 3;
+    final stateNotifier = Provider.of<PostInfoStateNotifier>(context);
+    final maxLines = stateNotifier.showFullCaption ? 9999 : 3;
     final theme = Theme.of(context);
     final textColor = theme.textTheme.bodyLarge?.color;
     final cardColor = theme.cardColor;
@@ -81,9 +117,7 @@ class _PostInfoState extends State<PostInfo> {
                     right: 0,
                     child: GestureDetector(
                       onTap: () {
-                        setState(() {
-                          showFullCaption = !showFullCaption;
-                        });
+                        stateNotifier.toggleShowFullCaption();
                       },
                       child: Container(
                         color: cardColor,

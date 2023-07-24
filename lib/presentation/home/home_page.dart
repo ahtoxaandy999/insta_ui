@@ -94,7 +94,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
         ],
       ),
       body: Center(
-        child: Container(
+        child: ConstrainedBox(
           constraints: const BoxConstraints(
             maxWidth: 470.0,
           ),

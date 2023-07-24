@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:insta_ui/src/models/post/comment.dart';
 
-class PostComments extends StatefulWidget {
+class CommentsNotifier with ChangeNotifier {
+  List<PostComment> comments;
+  bool isExpanded;
+
+  CommentsNotifier({
+    required this.comments,
+    this.isExpanded = false,
+  });
+
+  void toggleExpanded() {
+    isExpanded = !isExpanded;
+    notifyListeners();
+  }
+}
+
+class PostComments extends StatelessWidget {
   final List<PostComment> comments;
 
   const PostComments({
@@ -10,85 +26,87 @@ class PostComments extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _PostCommentsState createState() => _PostCommentsState();
-}
-
-class _PostCommentsState extends State<PostComments> {
-  bool _expanded = false;
-
-  @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final textColor = theme.textTheme.bodyLarge?.color;
-    final commentsCount = widget.comments.length;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              _expanded = !_expanded;
-            });
-          },
-          child: Text(
-            _expanded ? 'Hide comments' : 'View all comments ($commentsCount)',
-            style: const TextStyle(
-              color: Colors.grey,
-            ),
-          ),
-        ),
-        if (_expanded)
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: commentsCount,
-            itemBuilder: (context, index) {
-              final comment = widget.comments[index];
-
-              return ListTile(
-                leading: CircleAvatar(
-                  radius: 16.0,
-                  backgroundImage: AssetImage(comment.avatarImage),
-                ),
-                title: DefaultTextStyle(
-                  style: TextStyle(
-                    color: textColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12.0,
+    return ListenableProvider(
+      create: (context) => CommentsNotifier(
+        comments: comments,
+        isExpanded: false,
+      ),
+      child: Consumer<CommentsNotifier>(
+        builder: (context, commentsNotifier, _) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  commentsNotifier.toggleExpanded();
+                },
+                child: Text(
+                  commentsNotifier.isExpanded
+                      ? 'Hide comments'
+                      : 'View all comments (${comments.length})',
+                  style: const TextStyle(
+                    color: Colors.grey,
                   ),
-                  child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                            text: comment.nickname,
-                            style: TextStyle(
-                                color: textColor, fontWeight: FontWeight.bold)),
-                        const TextSpan(text: ' '),
-                        TextSpan(
-                          text: comment.time,
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12.0,
+                ),
+              ),
+              if (commentsNotifier.isExpanded)
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: comments.length,
+                  itemBuilder: (context, index) {
+                    final comment = comments[index];
+                    return ListTile(
+                      leading: CircleAvatar(
+                        radius: 16.0,
+                        backgroundImage: AssetImage(comment.avatarImage),
+                      ),
+                      title: DefaultTextStyle(
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.0,
+                        ),
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: comment.nickname,
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge
+                                          ?.color,
+                                      fontWeight: FontWeight.bold)),
+                              const TextSpan(text: ' '),
+                              TextSpan(
+                                text: comment.time,
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12.0,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                      subtitle: Text(comment.content),
+                      trailing: Text(
+                        '${comment.likes} likes',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    );
+                  },
                 ),
-                subtitle: Text(comment.content),
-                trailing: Text(
-                  '${comment.likes} likes',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                    fontSize: 12.0,
-                  ),
-                ),
-              );
-            },
-          ),
-      ],
+            ],
+          );
+        },
+      ),
     );
   }
 }

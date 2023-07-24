@@ -37,7 +37,7 @@ class _PostWidgetState extends State<PostWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.only(bottom: 20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,7 +48,7 @@ class _PostWidgetState extends State<PostWidget> {
               publicationTime: widget.publicationTime),
           const SizedBox(height: 8.0),
           Image.asset(widget.postImage),
-          Container(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

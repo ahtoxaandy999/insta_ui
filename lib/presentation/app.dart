@@ -12,11 +12,6 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-Brightness getCurrentThemeBrightness(BuildContext context) {
-  var brightness = MediaQuery.of(context).platformBrightness;
-  return brightness;
-}
-
 class _MyAppState extends State<MyApp> {
   final _appRouter = AppRouter();
 

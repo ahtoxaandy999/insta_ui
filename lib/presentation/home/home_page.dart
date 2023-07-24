@@ -6,30 +6,8 @@ import 'package:insta_ui/presentation/home/widgets/stories/stories.dart';
 import 'package:insta_ui/src/bloc/content/content.dart';
 import 'package:insta_ui/src/bloc/theme/theme.dart';
 import 'package:insta_ui/src/models/post/comment.dart';
-import 'package:insta_ui/src/models/story/story.dart';
 import 'package:insta_ui/src/repository/content/content_repo.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-final testStories = [
-  const Story(
-    avatarImage: 'assets/avatar.jpg',
-    image: 'assets/post_image.jpg',
-    title: 'This is a story title',
-    isViewed: false,
-  ),
-  const Story(
-    avatarImage: 'assets/avatar.jpg',
-    image: 'assets/post_image.jpg',
-    title: 'This is another story title',
-    isViewed: false,
-  ),
-  const Story(
-    avatarImage: 'assets/avatar.jpg',
-    image: 'assets/post_image.jpg',
-    title: 'This is the last story title',
-    isViewed: false,
-  ),
-];
 
 final testComments = [
   const PostComment(
@@ -125,7 +103,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
             itemCount: 10,
             itemBuilder: (context, index) {
               if (index == 0) {
-                return StoriesWidget(stories: testStories);
+                return StoriesWidget();
               } else {
                 // Display posts here
                 return PostWidget(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:insta_ui/presentation/home/widgets/post_actions.dart';
-import 'package:insta_ui/presentation/home/widgets/post_comments.dart';
-import 'package:insta_ui/presentation/home/widgets/post_head.dart';
-import 'package:insta_ui/presentation/home/widgets/post_info.dart';
+import 'package:insta_ui/presentation/home/widgets/post/post_actions.dart';
+import 'package:insta_ui/presentation/home/widgets/post/post_comments.dart';
+import 'package:insta_ui/presentation/home/widgets/post/post_head.dart';
+import 'package:insta_ui/presentation/home/widgets/post/post_info.dart';
 import 'package:insta_ui/src/models/post/comment.dart';
 
 class PostWidget extends StatefulWidget {

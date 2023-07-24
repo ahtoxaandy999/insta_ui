@@ -1,15 +1,14 @@
-class PostComment {
-  final String nickname;
-  final String avatarImage;
-  final String time;
-  final String likes;
-  final String content;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  PostComment({
-    required this.nickname,
-    required this.avatarImage,
-    required this.time,
-    required this.likes,
-    required this.content,
-  });
+part 'comment.freezed.dart';
+
+@freezed
+class PostComment with _$PostComment {
+  const factory PostComment({
+    required String nickname,
+    required String avatarImage,
+    required String time,
+    required String likes,
+    required String content,
+  }) = _PostComment;
 }
